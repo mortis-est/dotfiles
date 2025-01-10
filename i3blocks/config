@@ -1,0 +1,63 @@
+[battery]
+command=~/.config/i3blocks/battery/battery
+interval=30
+LABEL= 
+#BAT_NUMBER=0
+color=#25be32
+
+[DISK]
+command=df -h / | awk '/\//{ printf("💾 %4s/%s \n", $4, $2)}'
+interval=2
+color=#C9E3DB
+
+[CPU]
+full_text=0.00% @ +00.0°C 
+command=~/.config/i3blocks/cpu/cpu_info.sh
+interval=repeat
+color=#00B4EB
+
+[MEM]
+command=free -h | awk '/Mem:/ { printf("   %5s/%s \n", $3, $2) }'
+interval=1
+color=#FEC925
+
+#if you prefer updating only when signaled
+#[volume-pulseaudio]
+#command=~/.config/i3blocks/volume-pulseaudio/volume-pulseaudio
+#interval=once
+#signal=1
+#USE_ALSA_NAME=1
+
+#[volume-pipewire]
+#command=/home/nick/.config/i3blocks/volume-pipewire/volume-pipewire
+#interval=persist
+#signal=1
+#MIXER=[determined automatically]
+#SCONTROL=[determined automatically]
+##exposed format variables: ${SYMB}, ${VOL}, ${INDEX}, ${NAME}
+#LONG_FORMAT="${SYMB} ${VOL}% [${INDEX}:${NAME}]"
+SHORT_FORMAT="${SYMB} ${VOL}% [${INDEX}]"
+#AUDIO_HIGH_SYMBOL='  '
+#AUDIO_MED_THRESH=50
+#AUDIO_MED_SYMBOL='  '
+#AUDIO_LOW_THRESH=0
+#AUDIO_LOW_SYMBOL='  '
+#AUDIO_DELTA=5
+#DEFAULT_COLOR="#ffffff"
+#MUTED_COLOR="#a0a0a0"
+#USE_ALSA_NAME=1
+#USE_DESCRIPTION=0
+SUBSCRIBE=1 
+#SUBSCRIBE=0
+
+#[battery-poly]
+#command=/home/nick/.config/i3blocks/battery/battery_poly
+#LABEL=BAT
+#interval=5
+
+[TIME_DATE]
+#command=date | awk '{print $1 " - " $4 " " $5}'
+command=date +"%l:%M %p"
+interval=1
+#color=#afafaf
+color=#C9E3DB
