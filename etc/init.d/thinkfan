@@ -1,0 +1,33 @@
+#!/usr/bin/openrc-run
+# Copyright 2023 MeganerdNL
+# Distributed under the terms of the MIT License
+
+description="thinkfan - A minimalist fan control program. Supports the sysfs hwmon interface and thinkpad_acpi"
+supervisor="supervise-daemon"
+command="/usr/bin/thinkfan"
+command_args="-q"
+command_args_foreground="-n"
+extra_started_commands="reload"
+
+depend() {
+    after modules
+}
+
+start_pre() {
+        if [ -f /etc/thinkfan.yaml ] ; then
+                return 0
+        elif [ -f /etc/thinkfan.conf ] ; then
+                return 0
+        else
+                eerror "No /etc/thinkfan.yaml or /etc/thinkfan.conf. Please create one."
+                eerror "An example is in /usr/share/doc/thinkfan/examples/thinkfan.yaml."
+                eerror "Copy this file to /etc/thinkfan.conf (or /etc/thinkfan.yaml) and modify to taste."
+                return 1
+        fi
+}
+
+reload() {
+        ebegin "Reloading ${SVCNAME}"
+        ${supervisor} ${RC_SVCNAME} --signal HUP
+        eend $?
+}
