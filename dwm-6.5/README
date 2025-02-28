@@ -4,3 +4,9 @@ The following patches have been applied:
 - autostart
 - exitmenu
 - fullgaps
+
+In addition to this, the X11/XF86keysym.h 
+header file has been included into the main
+configuration to facilitate adjusting the
+monitor's brightness. Bindings have also 
+been modified to mimic those of i3.
